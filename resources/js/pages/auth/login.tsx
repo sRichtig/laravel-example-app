@@ -19,13 +19,14 @@ interface LoginProps {
     canResetPassword: boolean;
     canRegister: boolean;
     servername: string;
+    servers: Array<{ id: number; name: string }>;
 }
 
 export default function Login({
     status,
     canResetPassword,
     canRegister,
-    servername
+    servers
 }: LoginProps) {
     return (
         <AuthLayout
@@ -63,9 +64,9 @@ export default function Login({
                                 </div>
                                 <select required name="server" id="server" className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
                                     <option value="" disabled selected></option>
-                                    <option value="server1">{servername}</option>
-                                    <option value="server2">Server 2</option>
-                                    <option value="server3">Server 3</option>   
+                                    {servers.map((server) => (
+                                        <option key={server.id} value={server.id}>{server.name}</option>
+                                    ))}
                                 </select>
                             </div>
 
