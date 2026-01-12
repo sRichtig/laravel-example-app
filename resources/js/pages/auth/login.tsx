@@ -10,22 +10,27 @@ import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
+import { UserMenuContent } from '@/components/user-menu-content';
 
 interface LoginProps {
     status?: string;
     canResetPassword: boolean;
     canRegister: boolean;
+    servername: string;
 }
 
 export default function Login({
     status,
     canResetPassword,
     canRegister,
+    servername
 }: LoginProps) {
     return (
         <AuthLayout
             title="Log in to your account"
-            description="Enter your email and password below to log in"
+            description="Enter your credentials below to log in"
         >
             <Head title="Log in" />
 
@@ -38,7 +43,7 @@ export default function Login({
                     <>
                         <div className="grid gap-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email address</Label>
+                                <Label htmlFor="email">Email</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -50,6 +55,18 @@ export default function Login({
                                     placeholder="email@example.com"
                                 />
                                 <InputError message={errors.email} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <div className="flex items-center">
+                                    <Label htmlFor="server">Select Server</Label>
+                                </div>
+                                <select required name="server" id="server" className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                    <option value="" disabled selected></option>
+                                    <option value="server1">{servername}</option>
+                                    <option value="server2">Server 2</option>
+                                    <option value="server3">Server 3</option>   
+                                </select>
                             </div>
 
                             <div className="grid gap-2">
@@ -109,7 +126,7 @@ export default function Login({
                     </>
                 )}
             </Form>
-
+{status}
             {status && (
                 <div className="mb-4 text-center text-sm font-medium text-green-600">
                     {status}
