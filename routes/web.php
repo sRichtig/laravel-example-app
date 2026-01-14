@@ -3,13 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
-use App\Models\Server;
-
+use App\Http\Resources\ServerResource;
 
 Route::get('/', function () {
     return Inertia::render('auth/login', [
         'canRegister' => Features::enabled(Features::registration()),
-        'servers' => Server::all(),
+        'servers' => (new ServerResource(null))->list(),
     ]);
 })->name('home');
 

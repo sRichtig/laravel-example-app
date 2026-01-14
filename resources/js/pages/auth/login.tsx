@@ -10,9 +10,6 @@ import { register } from '@/routes';
 import { store } from '@/routes/login';
 import { request } from '@/routes/password';
 import { Form, Head } from '@inertiajs/react';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
-import { UserMenuContent } from '@/components/user-menu-content';
 
 interface LoginProps {
     status?: string;

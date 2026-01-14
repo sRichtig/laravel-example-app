@@ -13,7 +13,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -54,16 +54,6 @@ class ServerController extends Controller
     public function update(UpdateServerRequest $request, Server $server)
     {
         //
-    }
-    
-    /**
-     * List servers.
-     */
-    public function list()
-    {
-        $servers = Server::all();
-        
-        return $servers;
     }
 
     /**
